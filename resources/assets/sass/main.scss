@@ -1,0 +1,144 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,600");
+// Variables
+@import "node_modules/bulma/sass/utilities/initial-variables";
+
+$crimson: #73000A;
+$crimson-invert: #fff;
+
+$red: #ff0000;
+$green: green;
+
+$menu-label-color: $crimson;
+$primary: $crimson;
+$primary-invert: $crimson-invert;
+$light: #fafafa;
+
+@import "node_modules/bulma/bulma.sass";
+
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #fafafa;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.site-content {
+  flex: 1;
+}
+
+#main-banner {
+  color: white;
+  background-color: #73000A;
+  font-family: Raleway, sans-serif;
+  padding-left: 10%;
+}
+
+.navbar-main {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.jumbotron {
+  background: #73000A;
+  margin: 0;
+  //padding: 25px;
+}
+
+.header-container {
+  padding: 10px;
+  margin: 0;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0;
+  margin: 0;
+}
+
+.page-title {
+  font-size: 4em;
+  color: #73000A;
+  font-family: Raleway, sans-serif;
+  font-weight: 100;
+  margin: 20px 0 -15px -10px;
+}
+
+
+.gradient-line {
+  height: 2px;
+  background: #73000A; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #73000A, white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #73000A, white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #73000A, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #73000A, white); /* Standard syntax */
+  padding: 0;
+}
+
+.meet-details {
+  background: #73000A;
+  color: #fff;
+  padding: 0 30px;
+  margin: 30px 0;
+  border-radius: 5px;
+}
+
+#left-panel {
+  padding: 30px 20px;
+}
+
+#right-panel {
+  padding: 0 20px;
+}
+
+//#flash-message {
+//  top: 20%;
+//  position: absolute;
+//  right: 45%;
+//  z-index: 10;
+//  animation: flash-message 4s forwards;
+//}
+//
+//@keyframes flash-message {
+//  0% {
+//    opacity: 1;
+//  }
+//  100% {
+//    opacity: 0;
+//    display: none;
+//  }
+//}
+
+
+
+.footer {
+  margin-top: 50px;
+  border-top: solid thin #73000a;
+  flex-shrink: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
