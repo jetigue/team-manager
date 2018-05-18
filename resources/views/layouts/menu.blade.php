@@ -2,6 +2,7 @@
     <p class="menu-label">
         General
     </p>
+    <li><a href="{{ url('athletes')}}">Athletes</a></li>
     <p class="menu-label">
         Meet Components
     </p>

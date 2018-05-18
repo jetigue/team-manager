@@ -15,7 +15,7 @@ class VenuesController extends Controller
      */
     public function index()
     {
-        $venues = Venue::latest()->get();
+        $venues = Venue::all();
 
         return view('meets.track.venues.index', compact('venues'));
     }
@@ -80,7 +80,7 @@ class VenuesController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
-        //
+        $venue->update(request(['name', 'city', 'state']));
     }
 
     /**
@@ -91,6 +91,12 @@ class VenuesController extends Controller
      */
     public function destroy(Venue $venue)
     {
-        //
+        $venue->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Track venue deleted']);
+        }
+
+        return back();
     }
 }

@@ -21,11 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('track/meets/{meet}/results', 'Meets\Track\Results\Team\ResultsController@store');
 Route::resources([
-	// 'athletes' 				=>	'AthletesController',
+	'athletes' 				=>	'AthletesController',
 	'meets/genders'			=>	'Meets\GendersController',
 	'meets/hosts'			=>	'Meets\HostsController',
 	'meets/divisions'		=>	'Meets\DivisionsController',
-	 'track/seasons'		=>	'Meets\Track\SeasonsController',
+    'track/seasons'		    =>	'Meets\Track\SeasonsController',
 	'meets/timing'			=>	'Meets\TimingsController',
 	// 'track/events'			=>	'TrackEventsController',
 	'track/meet/names'		=>	'Meets\Track\NamesController',

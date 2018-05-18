@@ -78,7 +78,7 @@ class DivisionsController extends Controller
      */
     public function update(Request $request, Division $division)
     {
-        //
+        $division->update(request(['name']));
     }
 
     /**
@@ -89,6 +89,12 @@ class DivisionsController extends Controller
      */
     public function destroy(Division $division)
     {
-        //
+        $division->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Division deleted']);
+        }
+
+        return back();
     }
 }

@@ -22,11 +22,11 @@ class MeetsController extends Controller
     {
         $hosts = Host::all();
         $names = Name::all();
-        $meets = Meet::all();
+        $meets = Meet::with('host', 'venue', 'timing', 'season', 'meetName')->get();
         $seasons = Season::all();
         $timingMethods = Timing::all();
         $venues = Venue::all();
-
+//
         return view('meets.track.meets.index', compact(
             'hosts',
             'names',
@@ -35,6 +35,9 @@ class MeetsController extends Controller
             'timingMethods',
             'venues'
             ));
+
+
+//        return response()->json($meets);
     }
 
     /**
@@ -105,7 +108,14 @@ class MeetsController extends Controller
      */
     public function update(Request $request, Meet $meet)
     {
-        //
+        $meet->update(request([
+            'track_meet_name_id',
+            'meet_date',
+            'host_id',
+            'track_venue_id',
+            'timing_method_id',
+            'track_season_id'
+            ]));
     }
 
     /**
@@ -116,6 +126,12 @@ class MeetsController extends Controller
      */
     public function destroy(Meet $meet)
     {
-        //
+        $meet->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Track meet deleted']);
+        }
+
+        return back();
     }
 }

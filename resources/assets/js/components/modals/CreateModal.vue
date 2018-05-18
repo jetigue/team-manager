@@ -3,10 +3,10 @@
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">{{ title }}</p>
+                <p class="modal-card-title is-marginless">{{ title }}</p>
                 <button class="delete" aria-label="close" @click="$emit('close')"></button>
             </header>
-            <section class="modal-card-body" id="modalForm">
+            <section class="modal-card-body" id="createForm">
                 <slot></slot>
             </section>
             <footer class="modal-card-foot">
@@ -23,7 +23,7 @@
 
         data() {
             return {
-                showFormModal: false
+                showCreateModal: false
             }
         },
 

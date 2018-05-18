@@ -15,6 +15,8 @@ $primary-invert: $crimson-invert;
 $light: #fafafa;
 
 @import "node_modules/bulma/bulma.sass";
+@import "utilities/spacing";
+
 
 
 body {
@@ -27,6 +29,11 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
 }
 
 ul {
@@ -67,7 +74,7 @@ p {
 }
 
 .header-container {
-  padding: 10px;
+  //padding: 10px;
   margin: 0;
 }
 
@@ -101,9 +108,11 @@ p {
 .meet-details {
   background: #73000A;
   color: #fff;
-  padding: 0 30px;
-  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 5px;
+
 }
 
 #left-panel {
@@ -114,26 +123,6 @@ p {
   padding: 0 20px;
 }
 
-//#flash-message {
-//  top: 20%;
-//  position: absolute;
-//  right: 45%;
-//  z-index: 10;
-//  animation: flash-message 4s forwards;
-//}
-//
-//@keyframes flash-message {
-//  0% {
-//    opacity: 1;
-//  }
-//  100% {
-//    opacity: 0;
-//    display: none;
-//  }
-//}
-
-
-
 .footer {
   margin-top: 50px;
   border-top: solid thin #73000a;
@@ -142,3 +131,67 @@ p {
   background-color: #efefef;
   text-align: center;
 }
+
+.table-header {
+  border-bottom: solid 1px #d5d5d5;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+
+.table-row {
+  border-top: solid thin #d5d5d5;
+  font-family: Roboto, sans-serif;
+  margin-left: -25px;
+  margin-right: -25px;
+
+
+}
+
+.table-row:hover {
+  background-color: #f5f5f5;
+  border-left: solid thin #d5d5d5;
+  border-right: solid thin #d5d5d5;
+}
+
+.button-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+

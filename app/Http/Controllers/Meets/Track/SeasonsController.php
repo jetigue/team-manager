@@ -78,7 +78,7 @@ class SeasonsController extends Controller
      */
     public function update(Request $request, Season $season)
     {
-        //
+        $season->update(request(['name', 'city', 'state']));
     }
 
     /**
@@ -89,6 +89,12 @@ class SeasonsController extends Controller
      */
     public function destroy(Season $season)
     {
-        //
+        $season->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Track season deleted']);
+        }
+
+        return back();
     }
 }

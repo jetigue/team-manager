@@ -2,7 +2,7 @@ require('./bootstrap');
 
 window.Event = new Vue();
 
-Vue.component('form-modal', require('./components/FormModal'));
+Vue.component('create-modal', require('./components/modals/CreateModal'));
 Vue.component('add-new-gender', require('./components/forms/AddNewGender'));
 Vue.component('add-new-meet-division', require('./components/forms/AddNewMeetDivision'));
 Vue.component('add-new-meet-host', require('./components/forms/AddNewMeetHost'));
@@ -18,11 +18,10 @@ new Vue({
     el: '#flash'
 });
 
-
 Vue.component('button-create', {
 
     template: `
-        <button type="button" class="button is-primary is-outlined is-rounded" @click="showFormModal=true">
+        <button type="button" class="button is-primary is-outlined is-rounded">
             <span class="fa fa-plus" aria-hidden="true"></span> &nbsp <slot></slot>
         </button>
 	`
@@ -33,10 +32,32 @@ new Vue({
     el: '#header-button',
 
     data: {
-        showFormModal: false
+        showCreateModal: false
     },
 
 });
+
+Vue.component('division', require('./components/Division'));
+Vue.component('gender', require('./components/Gender'));
+Vue.component('host', require('./components/Host'));
+Vue.component('track-season', require('./components/TrackSeason'));
+Vue.component('timing', require('./components/Timing'));
+Vue.component('track-meet', require('./components/TrackMeet'));
+Vue.component('track-meet-name', require('./components/TrackMeetName'));
+Vue.component('track-team-result', require('./components/TrackTeamResult'));
+Vue.component('track-venue', require('./components/TrackVenue'));
+Vue.component('select-track-meet-name', require('./components/forms/selects/TrackMeetName'));
+
+
+new Vue({
+    el: '.table-card',
+
+    data: {
+        active: false,
+        showCreateModal: false
+    },
+});
+
 
 // new Vue({
 //     el: '#list',

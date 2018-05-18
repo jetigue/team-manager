@@ -78,7 +78,7 @@ class TimingsController extends Controller
      */
     public function update(Request $request, Timing $timing)
     {
-        //
+        $timing->update(request(['name']));
     }
 
     /**
@@ -89,6 +89,12 @@ class TimingsController extends Controller
      */
     public function destroy(Timing $timing)
     {
-        //
+        $timing->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Timing deleted']);
+        }
+
+        return back();
     }
 }

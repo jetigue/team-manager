@@ -1,39 +1,46 @@
 @extends('layouts.user')
 
 @section('title')
-    Divisions
+    Athletes
 @endsection
 
 @section('button')
 
-    <create-modal v-if="showCreateModal" @close="showCreateModal=false" id="createModal" title="Create Race Division" >
-        <add-new-meet-division></add-new-meet-division>
+    <create-modal v-if="showCreateModal" @close="showCreateModal=false" id="createModal" title="Create Athlete" >
+        <!-- <add-new-meet-host></add-new-meet-host> -->
     </create-modal>
     <button type="button" class="button is-primary is-outlined is-rounded" @click="showCreateModal = true" >
-        <span class="fa fa-plus" aria-hidden="true"></span> &nbsp Create Division
+        <span class="fa fa-plus" aria-hidden="true"></span> &nbsp Create Athlete
     </button>
 @endsection
 
 @section('content')
-    <div class="card table-card" id="divisionCard">
+    <div class="card table-card" id="hostCard">
         <div class="card-content py-0">
             <div class="content">
                 <div class="columns table-header">
                     <div class="column is-1 p-2 pl-3">
                         <strong>id</strong>
                     </div>
-                    <div class="column is-9 p-2">
-                        <strong>Division</strong>
+                    <div class="column is-3 p-2">
+                        <strong>Name</strong>
                     </div>
-                    <div class="column">
+                    <div class="column is-1 p-2">
+                        <strong>Sex</strong>
+                    </div>
+                    <div class="column is-1 p-2">
+                        <strong>Grad Year</strong>
+                    </div>
+                    <div class="column is-1 p-2">
+                        <strong>Status</strong>
                     </div>
                 </div>
 
-                @foreach($divisions as $division)
-                    <division :attributes="{{$division}}" inline-template>
+                @foreach($athletes as $athlete)
+                    <host :attributes="{{$athlete}}" inline-template>
                         <div v-if="editing" class="columns table-row">
                             <div class="column is-1 p-2">
-                                {{$division->id}}
+                                {{$athlete->id}}
                             </div>
                             <div class="column">
                                 <div class="field">
@@ -60,10 +67,20 @@
 
                         <div v-else class="columns table-row">
                             <div class="column is-1 py-2 pl-3">
-                                {{$division->id}}
+                                {{$athlete->id}}
                             </div>
-                            <div class="column is-9 py-2" v-text="name"></div>
-
+                            <div class="column is-3 p-2">
+                                {{$athlete->last_name}}, {{$athlete->first_name}}
+                            </div>
+                            <div class="column is-1 p-2">
+                                {{$athlete->sex}}
+                            </div>
+                            <div class="column is-1 p-2">
+                                {{$athlete->grad_year}}
+                            </div>
+                            <div class="column is-1 p-2">
+                                {{$athlete->status}}
+                            </div>
                             <div class="column p-0 button-cell">
                                 <p class="field">
                                     <a class="button is-text" @click="editing=true">
@@ -79,7 +96,7 @@
                                 </p>
                             </div>
                         </div>
-                    </division>
+                    </host>
                 @endforeach
             </div>
         </div>

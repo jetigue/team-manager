@@ -43,6 +43,7 @@
                         });
                         // flash('Venue Added Successfully');
                         Event.$emit('formSubmitted');
+
                     })
 
                     .catch(errors => console.log(errors));

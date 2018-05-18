@@ -5,56 +5,122 @@
 @endsection
 
 @section('button')
-    {{--<a class="btn btn-outline-primary" href="{{url('track/venues/create')}}" role="button">Create Track Venue</a>--}}
 
-        <form-modal v-if="showFormModal" @close="showFormModal=false" id="formModal" title="Create New Venue">
+        <create-modal v-if="showCreateModal" @close="showCreateModal=false" id="createModal" title="Create New Venue">
             <add-new-venue></add-new-venue>
-        </form-modal>
-        <button type="button" class="button is-primary is-outlined is-rounded" @click="showFormModal = true">
+        </create-modal>
+        <button type="button" class="button is-primary is-outlined is-rounded" @click="showCreateModal = true">
             <span class="fa fa-plus" aria-hidden="true"></span> &nbsp Create New Venue
         </button>
-        {{--<button-create>Create New Venue</button-create>--}}
 
 @endsection
 
 @section('content')
-
-
-    <table class="table table-hover">
-        <thead class="thead-light">
-        <tr>
-            <th scope="col">Venue</th>
-            <th scope="col">City</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($venues as $venue)
-            <tr>
-                <td>
-                    <a href="{{ $venue->path() }}">{{$venue->name}}</a>
-                </td>
-                <td>{{$venue->city}}, {{$venue->state}}</td>
-                <td>
-                    <div style="color:Red; opacity:.5; font-size:1.25em">
-                        <span class="far fa-trash-alt"></span>
+    <div class="card table-card" id="trackVenueCard">
+        <div class="card-content py-0">
+            <div class="content">
+                <div class="columns table-header">
+                    <div class="column is-1 p-2 pl-3">
+                        <strong>id</strong>
                     </div>
-                </td>
-
-                <td>
-                    <div style="color:Blue; opacity:.5; font-size:1.25em">
-                        <span class="fas fa-pencil-alt"></span>
+                    <div class="column is-9 p-2">
+                        <strong>Track Venues</strong>
                     </div>
-                </td>
-            </tr>
+                    <div class="column">
+                    </div>
+                </div>
 
-        @endforeach
-        </tbody>
-    </table>
+                @foreach($venues as $venue)
+                    <track-venue :attributes="{{$venue}}" inline-template>
+                        <div v-if="editing" class="columns table-row">
+                            <div class="column is-1 p-2 pl-3">
+                                {{$venue->id}}
+                            </div>
+                            <div class="column is-8">
 
-@endsection
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Name</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input type="text" class="input" name="name" id="name" v-model="name" required autofocus>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-@section('form-modal')
-    @include('modals.new-venue')
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">City</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input type="text" class="input" name="city" id="city" v-model="city" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">State</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input type="text" class="input" name="state" id="state" v-model="state" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label"><!--left empty for spacing--></div>
+                                    <div class="field-body">
+                                        <div class="field is-grouped">
+                                            <div class="control">
+                                                <button class="button is-success is-small is-rounded" @click="update">Update
+                                                </button>
+                                            </div>
+                                            <div class="control">
+                                                <button class="button is-light is-small is-rounded" @click="editing=false">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div v-else class="columns table-row">
+                            <div class="column is-1 py-2 pl-3">
+                                {{$venue->id}}
+                            </div>
+                            <div class="column is-5 py-2" v-text="name"></div>
+                            <div class="column is-3 py-2" v-text="city + ', ' + state"></div>
+                            <div class="column p-0 button-cell">
+                                <p class="field">
+                                    <a class="button is-text" @click="editing=true">
+                                    <span class="icon is-small" style="color:blue;">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </span>
+                                    </a>
+                                    <a class="button is-text mx-3" @click="destroy">
+                                    <span class="icon is-small" style="color:red;">
+                                        <i class="far fa-trash-alt"></i>
+                                    </span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </track-venue>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection

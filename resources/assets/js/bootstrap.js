@@ -8,6 +8,8 @@ Vue.use(VueSweetalert2);
 
 window.Vue = require('vue');
 
+window.$ = window.jQuery = require('jquery');
+
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

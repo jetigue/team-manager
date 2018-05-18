@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Meets;
+namespace App\Http\Controllers;
 
-use App\Models\Meets\Gender;
+use App\Models\Athlete;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class GendersController extends Controller
+class AthletesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,9 @@ class GendersController extends Controller
      */
     public function index()
     {
-        $genders = Gender::all();
+        $athletes = Athlete::all();
 
-        return view('meets.genders.index', compact('genders'));
+        return view('athletes.index', compact('athletes'));
     }
 
     /**
@@ -38,22 +37,16 @@ class GendersController extends Controller
      */
     public function store(Request $request)
     {
-        $gender = request()->validate([
-            'name'    => 'required|string|unique:genders,name',
-        ]);
-
-        Gender::create($gender);
-
-        return redirect('/meets/genders');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Meets\Gender  $gender
+     * @param  \App\Models\Athlete  $athlete
      * @return \Illuminate\Http\Response
      */
-    public function show(Gender $gender)
+    public function show(Athlete $athlete)
     {
         //
     }
@@ -61,10 +54,10 @@ class GendersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Meets\Gender  $gender
+     * @param  \App\Models\Athlete  $athlete
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gender $gender)
+    public function edit(Athlete $athlete)
     {
         //
     }
@@ -73,28 +66,22 @@ class GendersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Meets\Gender  $gender
+     * @param  \App\Models\Athlete  $athlete
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gender $gender)
+    public function update(Request $request, Athlete $athlete)
     {
-        $gender->update(request(['name']));
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Meets\Gender  $gender
+     * @param  \App\Models\Athlete  $athlete
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gender $gender)
+    public function destroy(Athlete $athlete)
     {
-        $gender->delete();
-
-        if (request()->expectsJson()) {
-            return response(['status' => 'Gender deleted']);
-        }
-
-        return back();
+        //
     }
 }

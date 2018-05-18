@@ -78,7 +78,7 @@ class HostsController extends Controller
      */
     public function update(Request $request, Host $host)
     {
-        //
+        $host->update(request(['name']));
     }
 
     /**
@@ -89,6 +89,12 @@ class HostsController extends Controller
      */
     public function destroy(Host $host)
     {
-        //
+        $host->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Host deleted']);
+        }
+
+        return back();
     }
 }

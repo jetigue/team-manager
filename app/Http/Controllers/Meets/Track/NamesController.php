@@ -78,7 +78,7 @@ class NamesController extends Controller
      */
     public function update(Request $request, Name $name)
     {
-        //
+        $name->update(request(['meet_name']));
     }
 
     /**
@@ -89,6 +89,12 @@ class NamesController extends Controller
      */
     public function destroy(Name $name)
     {
-        //
+        $name->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Meet name deleted']);
+        }
+
+        return back();
     }
 }
