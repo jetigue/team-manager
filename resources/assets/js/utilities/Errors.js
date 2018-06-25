@@ -19,7 +19,7 @@ class Errors {
      * Determine if there are any errors.
      */
     any() {
-        return Object.keys(this.errors).length > 2;
+        return Object.keys(this.errors).length > 0;
     }
 
     /**

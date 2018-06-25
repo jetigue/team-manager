@@ -104,10 +104,13 @@ class Form {
      * @param {object} data
      */
     onSuccess(data) {
-        this.reset();
-        setTimeout(() => {
-            location.reload(true);
-        }, 2500);
+
+        // this.$emit('created', data)
+
+        // this.reset();
+        // setTimeout(() => {
+        //     location.reload(true);
+        // }, 2500);
 
     }
 

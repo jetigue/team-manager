@@ -6,8 +6,8 @@ use App\Models\Meets\Division;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DivisionsController extends Controller
-{
+class DivisionsController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -33,24 +33,39 @@ class DivisionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Division $division)
     {
-        $division = request()->validate([
-            'name'    => 'required|string|unique:divisions,name'
-        ]);
+//        try
+//        {
+            $this->validateDivision();
 
-        Division::create($division);
+            $division = Division::create(request([
+                'name'
+            ]));
 
-        return redirect('/meets/divisions');
+//        } catch (\Exception $e)
+//        {
+//            return response(
+//                'Sorry, the division could not be saved at this time.', 422
+//            );
+//        }
+
+        if (request()->expectsJson())
+        {
+            return $division;
+        }
+
+
+        return back()->with('flash', 'Division has been added');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Meets\Division  $division
+     * @param  \App\Models\Meets\Division $division
      * @return \Illuminate\Http\Response
      */
     public function show(Division $division)
@@ -61,7 +76,7 @@ class DivisionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Meets\Division  $division
+     * @param  \App\Models\Meets\Division $division
      * @return \Illuminate\Http\Response
      */
     public function edit(Division $division)
@@ -72,29 +87,52 @@ class DivisionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Meets\Division  $division
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Meets\Division $division
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Division $division)
     {
-        $division->update(request(['name']));
+        try {
+            $this->validateDivision();
+
+            $division->update(request(['name']));
+
+        } catch (\Exception $e)
+        {
+            return response(
+                'Sorry, the division could not be saved at this time.', 422
+            );
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Meets\Division  $division
+     * @param  \App\Models\Meets\Division $division
      * @return \Illuminate\Http\Response
      */
     public function destroy(Division $division)
     {
         $division->delete();
 
-        if (request()->expectsJson()) {
+        if (request()->expectsJson())
+        {
             return response(['status' => 'Division deleted']);
         }
 
         return back();
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function validateDivision()
+    {
+        $division = request()->validate([
+            'name' => 'required|string|unique:divisions,name'
+        ]);
+
+        return $division;
     }
 }

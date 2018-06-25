@@ -10,10 +10,16 @@
 
     <title>{{ config('app.name', 'TeamManager') }}</title>
 
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
 	  <!--Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 <body>
-<div class="content" id="site">
+    <div id="site">

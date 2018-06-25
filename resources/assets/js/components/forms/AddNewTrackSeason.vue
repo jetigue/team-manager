@@ -12,7 +12,7 @@
         </div>
 
         <div class="control" style="margin-top:25px;">
-            <button class="button is-success is-pulled-right" :disabled="form.errors.any()">Add Venue</button>
+            <button class="button is-success is-pulled-right" :disabled="form.errors.any()">Add Season</button>
         </div>
 
     </form>

@@ -116,6 +116,8 @@ class MeetsController extends Controller
             'timing_method_id',
             'track_season_id'
             ]));
+
+        return back();
     }
 
     /**

@@ -2,7 +2,7 @@
 
 {{--@include('layouts.navbar')--}}
 
-<div class="container is-fluid">
+<div class="container site-content is-fluid">
 
     <div class="header">
         @include('layouts.page_header')
@@ -13,7 +13,7 @@
             @include('layouts.menu')
         </div>
 
-        <div class="column is-8" class="page-content" id="pageContent">
+        <div class="column is-8" class="page-content" id="userContent">
             @yield('content')
         </div>
 
@@ -21,9 +21,8 @@
             @yield('form')
         </div>
     </div>
-    @yield('form-modal')
 </div>
 <div id="flash">
-<flash message="{{ session('flash') }}"></flash>
+    <flash message="{{ session('flash') }}"></flash>
 </div>
 @include('layouts.footer')

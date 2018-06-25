@@ -31,4 +31,5 @@ class Division extends Model
     {
         return '/meets/divisions/' . $this->id;
     }
+
 }

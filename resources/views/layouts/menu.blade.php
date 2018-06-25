@@ -2,9 +2,12 @@
     <p class="menu-label">
         General
     </p>
-    <li><a href="{{ url('athletes')}}">Athletes</a></li>
+    <ul class="menu-list">
+        <li><a href="{{ url('athletes')}}">Athletes</a></li>
+    </ul>
+
     <p class="menu-label">
-        Meet Components
+        Meet Attributes
     </p>
     <ul class="menu-list is-active">
         <li><a href="{{ url('meets/genders')}}">Genders</a></li>

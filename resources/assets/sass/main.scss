@@ -14,9 +14,8 @@ $primary: $crimson;
 $primary-invert: $crimson-invert;
 $light: #fafafa;
 
-@import "node_modules/bulma/bulma.sass";
+@import "node_modules/bulma/bulma";
 @import "utilities/spacing";
-
 
 
 body {
@@ -25,53 +24,26 @@ body {
   background: #fafafa;
 }
 
-.site {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
 .flex {
   display: flex;
   justify-content: space-between;
 }
 
-ul {
-  padding: 0;
-  margin: 0;
-}
-li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.page-content,
+.tile-container {
+  background: #fafafa;
 }
 
-p {
-  padding: 0;
-  margin: 0;
+#site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .site-content {
   flex: 1;
 }
 
-#main-banner {
-  color: white;
-  background-color: #73000A;
-  font-family: Raleway, sans-serif;
-  padding-left: 10%;
-}
-
-.navbar-main {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.jumbotron {
-  background: #73000A;
-  margin: 0;
-  //padding: 25px;
-}
 
 .header-container {
   //padding: 10px;
@@ -112,7 +84,6 @@ p {
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
-
 }
 
 #left-panel {
@@ -124,39 +95,45 @@ p {
 }
 
 .footer {
-  margin-top: 50px;
+  padding: 20px;
   border-top: solid thin #73000a;
-  flex-shrink: 0;
-  padding: 1rem;
-  background-color: #efefef;
-  text-align: center;
 }
 
+
 .table-header {
-  border-bottom: solid 1px #d5d5d5;
-  margin-left: -25px;
-  margin-right: -25px;
+  border-bottom: solid thin #808080;
+  font-family: Roboto, sans-serif;
+  background-color: #d3d3d3;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.table-box {
+  border: solid thin #808080;
 }
 
 .table-row {
-  border-top: solid thin #d5d5d5;
   font-family: Roboto, sans-serif;
-  margin-left: -25px;
-  margin-right: -25px;
-
-
+  color: #0a0a0a;
+  font-weight: 500;
+  align-items: center;
 }
 
 .table-row:hover {
   background-color: #f5f5f5;
-  border-left: solid thin #d5d5d5;
-  border-right: solid thin #d5d5d5;
+  align-items: center;
 }
 
 .button-cell {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.create-button-container {
+  display: flex;
+  justify-content: center;
 }
 
 .tooltip {
@@ -192,6 +169,22 @@ p {
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.blue {
+  background-color: #0f81cc;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.inactiveAthlete {
+  color: #8a8a8a;
 }
 
 

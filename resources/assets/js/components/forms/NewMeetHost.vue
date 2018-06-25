@@ -1,9 +1,9 @@
 <template>
-    <form action="/meets/divisions" method="POST" id="newMeetDivision" @submit.prevent="onSubmit"
+    <form action="/meets/hosts" method="POST" id="newMeetHost" @submit.prevent="onSubmit"
           @keydown="form.errors.clear($event.target.name)">
 
         <div class="field">
-            <label class="label" for="name">Meet Division</label>
+            <label class="label" for="name">Host Name</label>
             <div class="control">
                 <input type="text" class="input" name="name" id="name" v-model="form.name">
                 <span id="nameHelp" class="help is-danger" v-if="form.errors.has('name')"
@@ -12,7 +12,7 @@
         </div>
 
         <div class="control" style="margin-top:25px;">
-            <button class="button is-success is-pulled-right" :disabled="form.errors.any()">Add Division</button>
+            <button class="button is-success is-pulled-right" :disabled="form.errors.any()">Create Host</button>
         </div>
 
     </form>
@@ -31,22 +31,29 @@
         methods: {
             onSubmit() {
                 this.form
-                    .post('/meets/divisions')
+                .post('/meets/hosts')
 
-                    .then(response => {
-                        Vue.swal({
-                            position: 'top',
-                            type: 'success',
-                            title: 'Division Added Successfully!',
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
-                        // flash('Venue Added Successfully');
+                    .then(data => {
+
                         Event.$emit('formSubmitted');
+
+                        const toast = swal.mixin({
+                            toast: true,
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                        toast({
+                            type: 'success',
+                            title: 'New Host Created'
+                        });
+
+                        this.$emit('created', data)
+
                     })
 
                     .catch(errors => console.log(errors));
-
             },
         }
     }

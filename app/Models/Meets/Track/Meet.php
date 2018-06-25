@@ -20,7 +20,7 @@ class Meet extends Model {
     protected $table = 'track_meets';
 
     /**
-     * Fillable fields for a Track Meet Name.
+     * Fillable fields for a Track Meet.
      *
      * @var array
      */

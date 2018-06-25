@@ -2,9 +2,8 @@ import Vue from 'vue';
 import axios from 'axios';
 import Form from './utilities/Form';
 import Errors from './utilities/Errors';
-import VueSweetalert2 from 'vue-sweetalert2';
 
-Vue.use(VueSweetalert2);
+window.swal = require('sweetalert2');
 
 window.Vue = require('vue');
 
@@ -31,8 +30,8 @@ window.Event = new Vue();
 
 window.events = new Vue();
 
-window.flash = function (message) {
-    window.events.$emit('flash', message);
+window.flash = function (message, level = 'success') {
+    window.events.$emit('flash', { message, level});
 };
 
 window.Form = Form;

@@ -19,6 +19,7 @@ class CreateAthletesTable extends Migration
             $table->string('first_name', 40);
             $table->string('last_name', 40);
             $table->char('sex', 1);
+            $table->date('dob')->nullable();
             $table->unsignedSmallInteger('grad_year');
             $table->char('status', 1);
             $table->timestamps();

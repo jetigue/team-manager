@@ -1,7 +1,7 @@
 <template>
-    <article class="message flash-message" v-show="show">
-        <div class="message-body has-text-white">
-            <strong>Success!</strong> {{ body }}
+    <article class="message flash-message" :class="'is-'+level" v-show="show">
+        <div class="message-body" >
+            <strong>{{ body }}</strong>
         </div>
     </article>
 
@@ -14,6 +14,7 @@
         data() {
             return {
                 body: '',
+                level: 'success',
                 show: false
             }
         },
@@ -24,14 +25,15 @@
             }
 
             window.events.$on(
-                'flash', message => this.flash(message)
+                'flash', data => this.flash(data)
             );
         },
 
         methods: {
 
-            flash(message) {
-                this.body = message;
+            flash(data) {
+                this.body = data.message;
+                this.level = data.level;
                 this.show = true;
 
                 this.hide();
