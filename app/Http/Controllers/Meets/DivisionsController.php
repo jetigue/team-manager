@@ -38,26 +38,16 @@ class DivisionsController extends Controller {
      */
     public function store(Request $request, Division $division)
     {
-//        try
-//        {
-            $this->validateDivision();
+        $division = request()->validate([
+            'name' => 'required|string|unique:divisions,name'
+        ]);
 
-            $division = Division::create(request([
-                'name'
-            ]));
-
-//        } catch (\Exception $e)
-//        {
-//            return response(
-//                'Sorry, the division could not be saved at this time.', 422
-//            );
-//        }
+        $division = Division::create($division);
 
         if (request()->expectsJson())
         {
             return $division;
         }
-
 
         return back()->with('flash', 'Division has been added');
     }
@@ -93,17 +83,26 @@ class DivisionsController extends Controller {
      */
     public function update(Request $request, Division $division)
     {
-        try {
-            $this->validateDivision();
+//        try {
+            request()->validate([
+                'name' => 'required|string|unique:divisions,name'
+            ]);
 
             $division->update(request(['name']));
 
-        } catch (\Exception $e)
-        {
-            return response(
-                'Sorry, the division could not be saved at this time.', 422
-            );
-        }
+//            $division = Division::update([$division]);
+
+            if (request()->expectsJson())
+            {
+                return $division;
+            }
+
+//        } catch (\Exception $e)
+//        {
+//            return response(
+//                'Sorry, the division could not be saved at this time.', 422
+//            );
+//        }
     }
 
     /**
@@ -122,17 +121,5 @@ class DivisionsController extends Controller {
         }
 
         return back();
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function validateDivision()
-    {
-        $division = request()->validate([
-            'name' => 'required|string|unique:divisions,name'
-        ]);
-
-        return $division;
     }
 }

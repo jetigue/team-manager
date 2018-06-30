@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(division, index) in items" :key="division.id">
-            <division :data="division" @deleted="remove(index)"></division>
+            <division :data="division" @deleted="remove(index)" @updated="add"></division>
         </div>
         <create-modal v-if="showCreateModal" @close="showCreateModal=false" id="createModal" title="Create Meet Division">
             <new-division @created="add"></new-division>
@@ -52,6 +52,8 @@
 
         created() {
             Event.$on('clicked', () => this.showCreateModal=true);
+
+            // Event.$on('updated', () => this.items.push(division));
         }
     }
 </script>

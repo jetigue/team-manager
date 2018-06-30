@@ -2,33 +2,36 @@
     <div v-if="editing" class="columns table-row m-0 px-4">
         <div v-text="id" class="column is-1"></div>
         <div class="column">
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Division Name:</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control">
-                            <input type="text" class="input" name="name" id="name" v-model="name" autofocus>
-                        </p>
+            <form action="/meets/divisions/id" method="POST" id="editMeetDivision" @submit.prevent="update"
+                  @keydown="form.errors.clear($event.target.name)">
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Division Name:</label>
                     </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="field-label"></div>
-                <div class="field-body">
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <update-button @clicked="update"></update-button>
-                        </div>
-                        <div class="control">
-                            <cancel-button @clicked="editing=false"></cancel-button>
+                    <div class="field-body">
+                        <div class="field">
+                            <p class="control">
+                                <input type="text" class="input" name="name" id="name" v-model="form.name" autofocus>
+                                <span id="nameHelp" class="help is-danger" v-if="form.errors.has('name')"
+                                      v-text="form.errors.get('name')"></span>
+                            </p>
                         </div>
                     </div>
                 </div>
-
-            </div>
+                <div class="field is-horizontal">
+                    <div class="field-label"></div>
+                    <div class="field-body">
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <update-button :disabled="form.errors.any()"></update-button>
+                            </div>
+                            <div class="control">
+                                <cancel-button @clicked="resetForm"></cancel-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -60,43 +63,53 @@
                 editing: false,
 
                 id: this.data.id,
-                name: this.data.name
+                name: this.data.name,
+                form: new Form({
+                    name: this.data.name,
+                })
             };
         },
 
         methods: {
             update() {
-                axios.patch(
-                    '/meets/divisions/' + this.data.id, {
-                        name: this.name
+                this.form
+                    .patch('/meets/divisions/' + this.data.id)
+
+                    .then(data => {
+                        this.name = this.form.name;
+                        this.editing = false;
+
+                        const toast = swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+
+                        toast({
+                            type: 'success',
+                            title: 'Division Updated'
+                        })
                     })
-
-                .then(() => {
-                    this.editing = false;
-
-                    const toast = swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-
-                    toast({
-                        type: 'success',
-                        title: 'Division Updated'
-                    })
-                })
-                .catch(error => {
-                    flash(error.response.data, 'danger');
-                    this.editing = true;
-                })
-
+                    .catch(errors => {
+                    console.log(errors);
+                });
             },
 
             destroy() {
                 axios.delete('/meets/divisions/' + this.data.id);
 
                 this.$emit('deleted', this.data.id);
+            },
+
+            resetForm() {
+                // this.form = {
+                //     name: this.data.name
+                // };
+                //
+                this.editing = false;
+
+                location.reload();
             }
         }
     }

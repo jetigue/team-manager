@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Meets\Track;
+
 use App\Http\Controllers\Controller;
 use App\Models\Meets\Track\Name;
 use Illuminate\Http\Request;
 
-class NamesController extends Controller
-{
+class NamesController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +16,11 @@ class NamesController extends Controller
     public function index()
     {
         $names = Name::all();
+
+        if (request()->expectsJson())
+        {
+            return $names;
+        }
 
         return view('meets.track.names.index', compact('names'));
     }
@@ -32,25 +38,28 @@ class NamesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Name $name)
     {
         $name = request()->validate([
-            'meet_name'    => 'required|string|unique:track_meet_names,meet_name|min:3',
+            'name' => 'required|string|unique:track_meet_names,name|min:3',
         ]);
 
-        Name::create($name);
+        $name = Name::create($name);
 
-        return redirect('/track/meet/names');
+        if (request()->expectsJson())
+        {
+            return $name;
+        }
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Track\Meets\Name  $name
+     * @param  \App\Models\Track\Meets\Name $name
      * @return \Illuminate\Http\Response
      */
     public function show(Name $name)
@@ -61,7 +70,7 @@ class NamesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Track\Meets\Name  $name
+     * @param  \App\Models\Track\Meets\Name $name
      * @return \Illuminate\Http\Response
      */
     public function edit(Name $name)
@@ -72,26 +81,36 @@ class NamesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Track\Meets\Name  $name
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Track\Meets\Name $name
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Name $name)
     {
-        $name->update(request(['meet_name']));
+        request()->validate([
+            'name' => 'required|string|unique:track_meet_names,name|min:3',
+        ]);
+
+        $name->update(request(['name']));
+
+        if (request()->expectsJson())
+        {
+            return $name;
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Track\Meets\Name  $name
+     * @param  \App\Models\Track\Meets\Name $name
      * @return \Illuminate\Http\Response
      */
     public function destroy(Name $name)
     {
         $name->delete();
 
-        if (request()->expectsJson()) {
+        if (request()->expectsJson())
+        {
             return response(['status' => 'Meet name deleted']);
         }
 

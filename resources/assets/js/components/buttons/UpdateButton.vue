@@ -1,5 +1,5 @@
 <template>
-    <button class="button is-success is-small is-rounded" @click="updateRecord">Update</button>
+    <button class="button is-success is-small is-rounded">Update</button>
 </template>
 
 <script>
@@ -11,9 +11,6 @@
 
         },
         methods: {
-            updateRecord() {
-                this.$emit('clicked');
-            }
         }
     };
 

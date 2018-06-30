@@ -17,6 +17,11 @@ class TimingsController extends Controller
     {
         $timings = Timing::all();
 
+        if (request()->expectsJson())
+        {
+            return $timings;
+        }
+
         return view('meets.timing.index', compact('timings'));
     }
 
@@ -42,7 +47,12 @@ class TimingsController extends Controller
             'name'    => 'required|string|unique:timing_methods,name'
         ]);
 
-        Timing::create($timing);
+        $timing = Timing::create($timing);
+
+        if (request()->expectsJson())
+        {
+            return $timing;
+        }
 
         return redirect('/meets/timing');
     }
@@ -78,7 +88,16 @@ class TimingsController extends Controller
      */
     public function update(Request $request, Timing $timing)
     {
+        request()->validate([
+            'name'    => 'required|string|unique:timing_methods,name'
+        ]);
+
         $timing->update(request(['name']));
+
+//        if (request()->expectsJson())
+//        {
+//            return $timing;
+//        }
     }
 
     /**

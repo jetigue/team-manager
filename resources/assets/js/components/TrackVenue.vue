@@ -27,6 +27,24 @@
                     </div>
                 </div>
             </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">State:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control is-expanded">
+                            <div class="select is-fullwidth">
+                                <select name="timing_method_id" v-model="stateSelected" :value="stateSelected">
+                                    <option v-for="item in items"
+                                            :value="item.key">{{item.value}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="field is-horizontal">
                 <div class="field-label">
@@ -74,8 +92,12 @@
                 id: this.data.id,
                 name: this.data.name,
                 city: this.data.city,
-                state: this.data.state
-            };
+                state: this.data.state,
+
+                items: [],
+
+                stateSelected: this.data.state
+            }
         },
 
         methods: {
@@ -105,7 +127,16 @@
                 axios.delete('/track/venues/' + this.data.id);
 
                 this.$emit('deleted', this.data.id);
+            },
+
+            getStates() {
+                axios.get('/json/States.json')
+                    .then(response => {
+                        this.items = response.data
+                });
+
             }
+
         }
     }
 </script>

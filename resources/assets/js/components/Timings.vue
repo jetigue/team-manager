@@ -3,24 +3,36 @@
         <div v-for="(timing, index) in items" :key="timing.id">
             <timing :data="timing" @deleted="remove(index)"></timing>
         </div>
+        <create-modal v-if="showCreateModal" @close="showCreateModal=false" id="createModal" title="Create Timing Method">
+            <new-timing-method @created="add"></new-timing-method>
+        </create-modal>
     </div>
 </template>
 
 <script>
     import Timing from './Timing';
+    import NewTimingMethod from './forms/NewTimingMethod';
+    import CreateModal from './modals/CreateModal'
+
 
     export default {
         props: ['data'],
 
-        components: { Timing },
+        components: { Timing, CreateModal, NewTimingMethod },
 
         data() {
             return {
-                items: this.data
+                items: this.data,
+                showCreateModal: false,
             }
         },
 
         methods: {
+
+            add(timing) {
+                this.items.push(timing);
+            },
+
             remove(index) {
                 this.items.splice(index, 1);
 
@@ -35,7 +47,11 @@
                     type: 'success',
                     title: 'Timing Method Deleted'
                 })
-            }
+            },
+        },
+
+        created() {
+            Event.$on('clicked', () => this.showCreateModal=true);
         }
     }
 </script>

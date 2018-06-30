@@ -6,7 +6,7 @@
             <label class="label" for="name">Division Name</label>
             <div class="control">
                 <input type="text" class="input" name="name" id="name" v-model="form.name">
-                <span id="nameHelp" class="help is-danger" v-if="form.errors.has('name')"
+                <span id="nameHelp" class="help is-danger" v-if="form.errors.has('form.name')"
                       v-text="form.errors.get('name')"></span>
             </div>
         </div>

@@ -42,7 +42,12 @@ class GendersController extends Controller
             'name'    => 'required|string|unique:genders,name',
         ]);
 
-        Gender::create($gender);
+        $gender = Gender::create($gender);
+
+        if (request()->expectsJson())
+        {
+            return $gender;
+        }
 
         return redirect('/meets/genders');
     }
@@ -78,6 +83,10 @@ class GendersController extends Controller
      */
     public function update(Request $request, Gender $gender)
     {
+        request()->validate([
+            'name' => 'required|string|unique:genders,name'
+        ]);
+
         $gender->update(request(['name']));
     }
 

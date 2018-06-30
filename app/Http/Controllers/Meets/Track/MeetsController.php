@@ -22,7 +22,7 @@ class MeetsController extends Controller
     {
         $hosts = Host::all();
         $names = Name::all();
-        $meets = Meet::with('host', 'venue', 'timing', 'season', 'meetName')->get();
+        $meets = Meet::with('host', 'venue', 'timing', 'season', 'name')->get();
         $seasons = Season::all();
         $timingMethods = Timing::all();
         $venues = Venue::all();

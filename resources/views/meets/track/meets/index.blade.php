@@ -4,35 +4,24 @@
     Track Meets
 @endsection
 
-@section('button')
-
-    <create-modal v-if="showCreateModal" @close="showCreateModal=false" id="createModal" title="Create New Track Meet">
-        <add-new-track-meet></add-new-track-meet>
-        {{--@include('meets.track.meets.form')--}}
-    </create-modal>
-    <button type="button" class="button is-primary is-outlined is-rounded" @click="showCreateModal = true">
-        <span class="fa fa-plus" aria-hidden="true"></span> &nbsp Create New Track Meet
-    </button>
-
-@endsection
-
 @section('content')
     <div class="box table-box p-0" id="genderBox">
         <div class="table-header columns m-0 px-4">
             <div class="column is-1 ">
                 <strong>id</strong>
             </div>
-            <div class="column is-5">
+            <div class="column">
                 <strong>Meet Name</strong>
             </div>
-            <div class="column is-3">
+            <div class="column is-2">
                 <strong>Date</strong>
             </div>
-            <div class="column">
+            <div class="column is-2 create-button-container">
+                <create-button>Create Meet Name</create-button>
             </div>
         </div>
 
-        <track-meets :data="{{ $meets }}"></track-meets>
+        <track-meets :data="{{ $meets}}"></track-meets>
     </div>
 
     {{--<div class="card table-card" id="trackMeetCard">--}}
@@ -287,6 +276,4 @@
             {{--</div>--}}
 
 @endsection
-
-
 

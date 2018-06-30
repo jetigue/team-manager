@@ -46,7 +46,7 @@ class Meet extends Model {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function meetName()
+    public function name()
     {
         return $this->belongsTo(Name::class, 'track_meet_name_id');
     }

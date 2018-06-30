@@ -17,6 +17,11 @@ class VenuesController extends Controller
     {
         $venues = Venue::all();
 
+        if (request()->expectsJson())
+        {
+            return $venues;
+        }
+
         return view('meets.track.venues.index', compact('venues'));
     }
 

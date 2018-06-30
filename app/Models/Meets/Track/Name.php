@@ -19,7 +19,7 @@ class Name extends Model
     *
     * @var array
     */
-    protected $fillable = ['meet_name'];
+    protected $fillable = ['name'];
 
     /**
      * Get a string path for the name.

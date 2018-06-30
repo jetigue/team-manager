@@ -17,6 +17,11 @@ class SeasonsController extends Controller
     {
         $seasons = Season::all();
 
+        if (request()->expectsJson())
+        {
+            return $seasons;
+        }
+
         return view('meets.track.seasons.index', compact('seasons'));
     }
 
@@ -36,15 +41,18 @@ class SeasonsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Season $season)
     {
         $season = request()->validate([
             'name'    => 'required|string|unique:track_seasons,name'
         ]);
 
-        Season::create($season);
+        $season = Season::create($season);
 
-        return redirect('/track/seasons');
+        if (request()->expectsJson())
+        {
+            return $season;
+        }
     }
 
     /**
@@ -78,7 +86,16 @@ class SeasonsController extends Controller
      */
     public function update(Request $request, Season $season)
     {
-        $season->update(request(['name', 'city', 'state']));
+        request()->validate([
+            'name'    => 'required|string|unique:track_seasons,name'
+        ]);
+
+        $season->update(request(['name']));
+
+        if (request()->expectsJson())
+        {
+            return $season;
+        }
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateTrackMeetNamesTable extends Migration
     {
         Schema::create('track_meet_names', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->string('meet_name', 100);
+            $table->string('name', 100);
             $table->timestamps();
         });
     }

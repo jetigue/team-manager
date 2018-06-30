@@ -52,7 +52,6 @@ Vue.component('track-meets', require('./components/TrackMeets'));
 Vue.component('track-meet-names', require('./components/TrackMeetNames'));
 Vue.component('track-team-result', require('./components/TrackTeamResult'));
 Vue.component('track-venues', require('./components/TrackVenues'));
-Vue.component('select-track-meet-name', require('./components/forms/selects/TrackMeetName'));
 // Vue.component('create-modal', require('./components/modals/CreateModal'));
 
 new Vue({

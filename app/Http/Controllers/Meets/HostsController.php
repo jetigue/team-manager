@@ -17,7 +17,14 @@ class HostsController extends Controller
     {
         $hosts = Host::all();
 
+        if (request()->expectsJson())
+        {
+            return $hosts;
+        }
+
         return view('meets.hosts.index', compact('hosts'));
+
+
     }
 
     /**
@@ -42,7 +49,12 @@ class HostsController extends Controller
             'name'    => 'required|string|unique:hosts,name'
         ]);
 
-        Host::create($host);
+        $host = Host::create($host);
+
+        if (request()->expectsJson())
+        {
+            return $host;
+        }
 
         return redirect('/meets/hosts');
     }
@@ -78,7 +90,16 @@ class HostsController extends Controller
      */
     public function update(Request $request, Host $host)
     {
+        request()->validate([
+            'name'    => 'required|string|unique:hosts,name'
+        ]);
+
         $host->update(request(['name']));
+
+        if (request()->expectsJson())
+        {
+            return $host;
+        }
     }
 
     /**

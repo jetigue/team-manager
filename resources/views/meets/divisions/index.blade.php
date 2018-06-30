@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="box table-box p-0" id="divisionCard">
+    <div class="box table-box p-0" id="divisionBox">
         <div class="columns table-header m-0 px-4">
             <div class="column is-1">
                 <strong>id</strong>
