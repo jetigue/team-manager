@@ -2,7 +2,7 @@
     <div v-if="editing" class="columns table-row m-0 px-4">
         <div v-text="id" class="column is-1"></div>
         <div class="column">
-            <form action="/track/seasons" method="POST" id="editTrackSeason" @submit.prevent="update"
+            <form action="/track/seasons/id" method="POST" id="editTrackSeason" @submit.prevent="update"
                   @keydown="form.errors.clear($event.target.name)">
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">

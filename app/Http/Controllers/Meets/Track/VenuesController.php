@@ -44,12 +44,17 @@ class VenuesController extends Controller
     public function store(Request $request, Venue $venue)
     {
         $venue = request()->validate([
-            'name'    => 'required|string|unique:track_venues,name',
+            'name'    => 'required|string',
             'city'    => 'required|string|alpha',
             'state'   => 'required|string|alpha'
         ]);
 
-        Venue::create($venue);
+        $venue = Venue::create($venue);
+
+        if (request() -> expectsJson())
+        {
+            return $venue;
+        }
 
         return redirect('/track/venues');
     }
@@ -85,7 +90,18 @@ class VenuesController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
+        request()->validate([
+            'name'    => 'required|string',
+            'city'    => 'required|string',
+            'state'   => 'required|string|alpha'
+        ]);
+
         $venue->update(request(['name', 'city', 'state']));
+
+        if (request()->expectsJson())
+        {
+            return $venue;
+        }
     }
 
     /**

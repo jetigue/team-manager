@@ -20,6 +20,21 @@
             </div>
         </div>
 
+        <div class="field">
+            <label class="label" for="name">State</label>
+            <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                    <select name="state" v-model="form.state">
+                        <option v-for="item in items"
+                                :value="item.abbreviation">{{item.name}}
+                        </option>
+                    </select>
+                    <span id="stateHelp" class="help is-danger" v-if="form.errors.has('state')"
+                          v-text="form.errors.get('state')"></span>
+                </div>
+            </div>
+        </div>
+
         <div class="control" style="margin-top:25px;">
             <button class="button is-success is-pulled-right" :disabled="form.errors.any()">Create Venue</button>
         </div>
@@ -33,15 +48,19 @@
             return {
                 form: new Form({
                     name: '',
-                    city: ''
-                })
+                    city: '',
+                    state: ''
+                }),
+
+                items: [],
+
             };
         },
 
         methods: {
             onSubmit() {
                 this.form
-                .post('/track/venues')
+                    .post('/track/venues')
 
                     .then(data => {
 
@@ -64,7 +83,17 @@
                     })
 
                     .catch(errors => console.log(errors));
-            },
+            }
+        },
+
+        created() {
+            axios.get('/storage/json/States.json')
+                .then(response => {
+                    this.items = response.data;
+                })
+                .catch(errors => {
+                    console.log(errors)
+                });
         }
     }
 </script>

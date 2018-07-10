@@ -51,11 +51,6 @@
 
         created() {
             Event.$on('clicked', () => this.showCreateModal=true);
-
-            // axios.get('/track/meet/names')
-            //     .then((response) => {
-            //         this.items = response.data
-            //     });
         }
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="tooltip mr-2">
+    <div class="tooltip">
         <a class="button is-text" @click="editRecord">
             <span class="icon is-small" style="color:blue;">
                 <i class="fas fa-pencil-alt"></i>

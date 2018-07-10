@@ -1,5 +1,5 @@
 <template>
-    <div class="tooltip ml-2">
+    <div class="tooltip">
         <a class="button is-text" @click="deleteRecord">
             <span class="icon is-small" style="color:red;">
                 <i class="far fa-trash-alt"></i>

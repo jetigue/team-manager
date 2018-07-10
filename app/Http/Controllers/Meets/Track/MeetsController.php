@@ -20,21 +20,28 @@ class MeetsController extends Controller
      */
     public function index()
     {
-        $hosts = Host::all();
-        $names = Name::all();
+//        $hosts = Host::all();
+//        $names = Name::all();
         $meets = Meet::with('host', 'venue', 'timing', 'season', 'name')->get();
-        $seasons = Season::all();
-        $timingMethods = Timing::all();
-        $venues = Venue::all();
-//
+//        $seasons = Season::all();
+//        $timingMethods = Timing::all();
+//        $venues = Venue::all();
+//        $meets = Meet::all();
+
+       if (request()->expectsJson())
+        {
+            return $meets;
+        }
+
         return view('meets.track.meets.index', compact(
-            'hosts',
-            'names',
-            'meets',
-            'seasons',
-            'timingMethods',
-            'venues'
+//            'hosts',
+//            'names',
+            'meets'
+//            'seasons',
+//            'timingMethods',
+//            'venues'
             ));
+
 
 
 //        return response()->json($meets);
@@ -67,7 +74,12 @@ class MeetsController extends Controller
             'track_venue_id'        => 'required|integer' 
         ]);
 
-        Meet::create($meet);
+        $meet = Meet::create($meet);
+
+        if (request() -> expectsJson())
+        {
+            return $meet;
+        }
 
 
 
@@ -108,14 +120,28 @@ class MeetsController extends Controller
      */
     public function update(Request $request, Meet $meet)
     {
-        $meet->update(request([
-            'track_meet_name_id',
-            'meet_date',
-            'host_id',
-            'track_venue_id',
-            'timing_method_id',
-            'track_season_id'
-            ]));
+       request()->validate([
+            'track_meet_name_id'    => 'required|integer',
+            'meet_date'             => 'required|date',
+            'host_id'               => 'required|integer',
+            'track_season_id'       => 'required|integer',
+            'timing_method_id'      => 'required|integer',
+            'track_venue_id'        => 'required|integer'
+        ]);
+
+       $meet->update(request([
+           'track_meet_name_id',
+           'meet_date',
+           'host_id',
+           'track_season_id',
+           'timing_method_id',
+           'track_venue_id'
+       ]));
+
+        if (request()->expectsJson())
+        {
+            return $meet;
+        }
 
         return back();
     }
