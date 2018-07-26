@@ -36,7 +36,7 @@ new Vue({
 //     },
 
 // });
-// Vue.component('new-division', require('./components/NewDivision'));
+Vue.component('track-team-results', require('./components/TrackTeamResults'))
 Vue.component('cancel-button', require('./components/buttons/CancelButton'));
 Vue.component('create-button', require('./components/buttons/CreateButton'));
 Vue.component('delete-button', require('./components/buttons/DeleteButton'));

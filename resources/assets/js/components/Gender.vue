@@ -81,7 +81,7 @@
             update() {
                 this.form
                 .patch('/meets/genders/' + this.data.id)
-                    .then(data => {
+                    .then(() => {
                         this.name = this.form.name;
                         this.editing = false;
 

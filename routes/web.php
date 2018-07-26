@@ -19,7 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('track/meets/{meet}/results', 'Meets\Track\Results\Team\ResultsController@store');
+Route::post('track/meets/{meet}', 'Meets\Track\Results\Team\ResultsController@store');
+Route::patch('track/meets/{meet}/results/{result}', 'Meets\Track\Results\Team\ResultsController@update');
 Route::resources([
 	'athletes' 				=>	'AthletesController',
 	'meets/genders'			=>	'Meets\GendersController',

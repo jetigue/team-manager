@@ -17,6 +17,11 @@ class GendersController extends Controller
     {
         $genders = Gender::all();
 
+        if (request()->expectsJson())
+        {
+            return $genders;
+        }
+
         return view('meets.genders.index', compact('genders'));
     }
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Athlete extends Model
 {
 
-    protected $dates = ['dob'];
+//    protected $dates = ['dob'];
 
 	/**
      * The table associated with the model.

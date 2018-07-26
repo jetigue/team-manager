@@ -157,7 +157,7 @@
 
                     <div class="pm-0 tooltip">
                         <!--<a class="button is-text" href="{{ $meet->path() }}">-->
-                        <a class="button is-text" href="#">
+                        <a class="button is-text" :href="'/track/meets/'+data.id">
                         <span class="icon is-small" style="color:#73000a;">
                             <i class="fas fa-eye"></i>
                         </span>

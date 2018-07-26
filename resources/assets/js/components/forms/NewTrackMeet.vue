@@ -125,7 +125,9 @@
         methods: {
             onSubmit() {
                 this.form
-                    .post('/track/meets')
+                    .post('/track/meets', {
+
+                    })
 
                     .then(data => {
 
@@ -151,7 +153,7 @@
             }
         },
 
-        mounted() {
+        created() {
             function getMeetNames() {
                 return axios.get('/track/meet/names')
             }

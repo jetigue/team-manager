@@ -18,7 +18,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">City:</label>
@@ -53,11 +52,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="field is-horizontal">
-                    <div class="field-label">
-
-                    </div>
+                    <div class="field-label"></div>
                     <div class="field-body">
                         <div class="field is-grouped">
                             <div class="control">
@@ -68,7 +64,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </form>
         </div>

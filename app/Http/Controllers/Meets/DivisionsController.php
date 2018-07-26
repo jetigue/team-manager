@@ -17,6 +17,11 @@ class DivisionsController extends Controller {
     {
         $divisions = Division::all();
 
+        if (request()->expectsJson())
+        {
+            return $divisions;
+        }
+
         return view('meets.divisions.index', compact('divisions'));
     }
 

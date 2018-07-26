@@ -2,6 +2,7 @@
 
 namespace App\Models\Meets\Track;
 
+use App\Models\Meets\Gender;
 use App\Models\Meets\Host;
 use App\Models\Meets\Track\Season;
 use App\Models\Meets\Timing;
@@ -92,11 +93,12 @@ class Meet extends Model {
     }
 
     /**
-     *
+     * @param $result
+     * @param array $result
      */
-    public function addResult()
+    public function addResult($result)
     {
-        $meet = request()->validate([
+        $result = request()->validate([
             'gender_id'    => 'required|integer',
             'division_id'  => 'required|integer',
             'place'        => 'nullable|integer|max:number_teams',
@@ -104,7 +106,7 @@ class Meet extends Model {
             'points'       => 'nullable|numeric',
         ]);
 
-        $this->teamResults()->create($meet);
+        return $this->teamResults()->create($result);
     }
 
 }

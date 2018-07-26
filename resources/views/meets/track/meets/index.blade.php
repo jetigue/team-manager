@@ -16,7 +16,7 @@
             <div class="column is-2">
                 <strong>Date</strong>
             </div>
-            <div class="column is-2 create-button-container">
+            <div class="column is-2 is-offset-1 create-button-container">
                 <create-button>Create Meet Name</create-button>
             </div>
         </div>

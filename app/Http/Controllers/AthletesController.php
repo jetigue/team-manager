@@ -43,13 +43,17 @@ class AthletesController extends Controller {
             'sex'        => 'required',
             'dob'        => 'nullable|date',
             'grad_year'  => 'required|integer',
-            'user_id'    => 'nullable|integer',
             'status'     => 'required'
         ]);
 
         Athlete::create($athlete);
 
-        return back()->with('flash', 'Athlete added successfully!');
+        if (request()->expectsJson())
+        {
+            return $athlete;
+        }
+
+        return back();
 
     }
 
@@ -90,9 +94,13 @@ class AthletesController extends Controller {
             'sex',
             'dob',
             'grad_year',
-            'status',
-            'user_id'
+            'status'
         ]));
+
+        if (request()->expectsJson())
+        {
+            return $athlete;
+        }
     }
 
     /**

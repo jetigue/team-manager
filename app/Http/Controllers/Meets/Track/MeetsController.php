@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Meets\Track;
 
 use App\Models\Meets\Track\Season;
 use App\Models\Meets\Timing;
+use App\Models\Meets\Track\Results\Team\Result;
 use App\Models\Meets\Track\Meet;
 use App\Models\Meets\Track\Name;
 use App\Models\Meets\Track\Venue;
@@ -20,31 +21,14 @@ class MeetsController extends Controller
      */
     public function index()
     {
-//        $hosts = Host::all();
-//        $names = Name::all();
         $meets = Meet::with('host', 'venue', 'timing', 'season', 'name')->get();
-//        $seasons = Season::all();
-//        $timingMethods = Timing::all();
-//        $venues = Venue::all();
-//        $meets = Meet::all();
 
        if (request()->expectsJson())
         {
             return $meets;
         }
 
-        return view('meets.track.meets.index', compact(
-//            'hosts',
-//            'names',
-            'meets'
-//            'seasons',
-//            'timingMethods',
-//            'venues'
-            ));
-
-
-
-//        return response()->json($meets);
+        return view('meets.track.meets.index', compact('meets'));
     }
 
     /**
@@ -65,7 +49,7 @@ class MeetsController extends Controller
      */
     public function store(Request $request, Meet $meet)
     {
-        $meet = request()->validate([
+        $meet = $request->validate([
             'track_meet_name_id'    => 'required|integer',
             'meet_date'             => 'required|date',
             'host_id'               => 'required|integer',
@@ -78,12 +62,10 @@ class MeetsController extends Controller
 
         if (request() -> expectsJson())
         {
-            return $meet;
+            return $meet->load('name', 'host', 'timing', 'venue', 'season');
         }
 
-
-
-        return back()->with('flash', 'Meet added successfully!');
+        return redirect('/track/meets');
     }
 
     /**
@@ -94,10 +76,12 @@ class MeetsController extends Controller
      */
     public function show(Meet $meet)
     {
-        $genders = \App\Models\Meets\Gender::all();
-        $divisions = \App\Models\Meets\Division::all();
+//        if (request()->expectsJson())
+//        {
+//            return $meet;
+//        }
 
-        return view('meets.track.meets.show', compact('meet', 'genders', 'divisions'));
+        return view('meets.track.meets.show', compact('meet'));
     }
 
     /**
