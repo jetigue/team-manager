@@ -2,22 +2,13 @@ require('./bootstrap');
 
 // window.Event = new Vue();
 
-// Vue.component('add-new-gender', require('./components/forms/AddNewGender'));
-// Vue.component('add-new-meet-division', require('./components/forms/AddNewMeetDivision'));
-// Vue.component('add-new-meet-host', require('./components/forms/AddNewMeetHost'));
-// Vue.component('add-new-timing-method', require('./components/forms/AddNewTimingMethod'));
-// Vue.component('add-new-track-meet', require('./components/forms/AddNewTrackMeet'));
-// Vue.component('add-new-track-meet-name', require('./components/forms/AddNewTrackMeetName'));
-// Vue.component('add-new-track-season', require('./components/forms/AddNewTrackSeason'));
-// Vue.component('add-new-venue', require('./components/forms/AddNewVenue'));
-
 //
 //
-Vue.component('flash', require('./components/Flash.vue'));
-
-new Vue({
-   el: '#flash'
-});
+// Vue.component('flash', require('./components/Flash.vue'));
+//
+// new Vue({
+//    el: '#flash'
+// });
 // Vue.component('button-create', {
 //
 //     template: `
@@ -36,22 +27,48 @@ new Vue({
 //     },
 
 // });
-Vue.component('track-team-results', require('./components/TrackTeamResults'))
+
+Vue.component('athletes', require('./components/Athletes'));
+
+// Buttons
 Vue.component('cancel-button', require('./components/buttons/CancelButton'));
 Vue.component('create-button', require('./components/buttons/CreateButton'));
 Vue.component('delete-button', require('./components/buttons/DeleteButton'));
 Vue.component('edit-button', require('./components/buttons/EditButton'));
 Vue.component('update-button', require('./components/buttons/UpdateButton'));
-Vue.component('athletes', require('./components/Athletes'));
-Vue.component('divisions', require('./components/Divisions'));
-Vue.component('genders', require('./components/Genders'));
-Vue.component('hosts', require('./components/Hosts'));
-Vue.component('track-seasons', require('./components/TrackSeasons'));
-Vue.component('timings', require('./components/Timings'));
-Vue.component('track-meets', require('./components/TrackMeets'));
-Vue.component('track-meet-names', require('./components/TrackMeetNames'));
-Vue.component('track-team-result', require('./components/TrackTeamResult'));
-Vue.component('track-venues', require('./components/TrackVenues'));
+
+// General Properties
+Vue.component('distances', require('./components/general_properties/Distances'));
+Vue.component('seasons', require('./components/general_properties/Seasons'));
+Vue.component('terrain-types', require('./components/general_properties/TerrainTypes'));
+
+// Meet Properties
+Vue.component('hosts', require('./components/meet_properties/Hosts'));
+Vue.component('timings', require('./components/meet_properties/Timings'));
+
+// Race Properties
+Vue.component('divisions', require('./components/race_properties/Divisions'));
+Vue.component('genders', require('./components/race_properties/Genders'));
+
+// Training Properties
+Vue.component('run-efforts', require('./components/training_properties/RunEfforts'));
+Vue.component('day-times', require('./components/training_properties/DayTimes'));
+Vue.component('run-feelings', require('./components/training_properties/RunFeelings'));
+Vue.component('run-types', require('./components/training_properties/RunTypes'));
+
+// Cross Country
+Vue.component('cross-country-meet-names', require('./components/cross_country/CrossCountryMeetNames'));
+Vue.component('cross-country-meets', require('./components/cross_country/CrossCountryMeets'));
+Vue.component('cross-country-venues', require('./components/cross_country/CrossCountryVenues'));
+
+// Track
+Vue.component('track-seasons', require('./components/track/TrackSeasons'));
+Vue.component('track-meets', require('./components/track/TrackMeets'));
+Vue.component('track-meet-names', require('./components/track/TrackMeetNames'));
+Vue.component('track-team-result', require('./components/track/TrackTeamResult'));
+Vue.component('track-venues', require('./components/track/TrackVenues'));
+Vue.component('track-team-results', require('./components/track/TrackTeamResults'));
+
 // Vue.component('create-modal', require('./components/modals/CreateModal'));
 
 new Vue({
@@ -60,5 +77,12 @@ new Vue({
     data: {
         active: false,
     },
+});
+Vue.component('user-menu', require('./components/menus/UserMenu'));
+// Vue.component('menu-items', require('./components/menus/MenuItems'));
+// Vue.component('menu-item', require('./components/menus/MenuItem'));
+
+new Vue({
+    el: '#userMenu'
 });
 

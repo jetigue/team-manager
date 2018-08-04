@@ -11,6 +11,6 @@ class DivisionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Meets\Division', 3)->create();
+        factory('App\Models\RaceProperties\Division', 3)->create();
     }
 }

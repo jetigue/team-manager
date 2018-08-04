@@ -11,6 +11,6 @@ class TrackMeetsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Meets\Track\Meet', 10)->create();
+        factory('App\Models\Track\Meet', 10)->create();
     }
 }

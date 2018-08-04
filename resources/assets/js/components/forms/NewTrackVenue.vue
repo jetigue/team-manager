@@ -60,7 +60,7 @@
         methods: {
             onSubmit() {
                 this.form
-                    .post('/track/venues')
+                    .post('/api/track/venues')
 
                     .then(data => {
 

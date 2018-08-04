@@ -11,6 +11,6 @@ class TrackSeasonsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Meets\Track\Season', 2)->create();
+        factory('App\Models\Track\Season', 2)->create();
     }
 }

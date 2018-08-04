@@ -1,9 +1,9 @@
 <template>
-    <form action="/meets/timing" method="POST" id="newTimingMethod" @submit.prevent="onSubmit"
+    <form action="/api/meet-properties/timing" method="POST" id="newTimingMethod" @submit.prevent="onSubmit"
           @keydown="form.errors.clear($event.target.name)">
 
         <div class="field">
-            <label class="label" for="name">Method Name</label>
+            <label class="label" for="name">Timing Method Name</label>
             <div class="control">
                 <input type="text" class="input" name="name" id="name" v-model="form.name">
                 <span id="nameHelp" class="help is-danger" v-if="form.errors.has('name')"
@@ -31,7 +31,7 @@
         methods: {
             onSubmit() {
                 this.form
-                .post('/meets/timing')
+                .post('/api/meet-properties/timing')
 
                     .then(data => {
 

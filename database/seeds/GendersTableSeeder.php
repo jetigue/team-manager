@@ -11,6 +11,6 @@ class GendersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Meets\Gender', 3)->create();
+        factory('App\Models\RaceProperties\Gender', 3)->create();
     }
 }

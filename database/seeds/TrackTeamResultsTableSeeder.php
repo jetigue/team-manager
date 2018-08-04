@@ -11,6 +11,6 @@ class TrackTeamResultsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Meets\Track\Results\Team\Result', 25)->create();
+        factory('App\Models\Track\Results\Team\Result', 25)->create();
     }
 }

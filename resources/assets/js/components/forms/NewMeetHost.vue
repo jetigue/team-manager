@@ -31,7 +31,7 @@
         methods: {
             onSubmit() {
                 this.form
-                .post('/meets/hosts')
+                .post('/meet_properties/hosts')
 
                     .then(data => {
 

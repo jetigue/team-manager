@@ -31,7 +31,7 @@
         methods: {
             onSubmit() {
                 this.form
-                .post('/track/seasons')
+                .post('/api/track/seasons')
 
                     .then(data => {
 

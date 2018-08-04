@@ -1,5 +1,5 @@
 <template>
-    <form action="/track/meets" method="POST" id="newTrackMeet" @submit.prevent="onSubmit"
+    <form action="/api/track/meets" method="POST" id="newTrackMeet" @submit.prevent="onSubmit"
           @keydown="form.errors.clear($event.target.name)">
 
         <div class="field">
@@ -125,7 +125,7 @@
         methods: {
             onSubmit() {
                 this.form
-                    .post('/track/meets', {
+                    .post('/api/track/meets', {
 
                     })
 
@@ -155,23 +155,23 @@
 
         created() {
             function getMeetNames() {
-                return axios.get('/track/meet/names')
+                return axios.get('/api/track/meet/names')
             }
 
             function getHostNames() {
-                return axios.get('/meets/hosts')
+                return axios.get('/api/meet_properties/hosts')
             }
 
             function getVenueNames() {
-                return axios.get('/track/venues')
+                return axios.get('/api/track/venues')
             }
 
             function getTimingMethods() {
-                return axios.get('/meets/timing')
+                return axios.get('/api/meet_properties/timing')
             }
 
             function getTrackSeasons() {
-                return axios.get('/track/seasons')
+                return axios.get('/api/track/seasons')
             }
 
             axios.all([

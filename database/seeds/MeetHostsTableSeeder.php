@@ -11,6 +11,6 @@ class MeetHostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Meets\Host', 10)->create();
+        factory('App\Models\MeetProperties\Host', 10)->create();
     }
 }

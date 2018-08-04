@@ -9,8 +9,9 @@
     </div>
 
     <div class="columns">
-        <div class="column is-2" id="left-panel">
-            @include('layouts.menu')
+        <div class="column is-2" id="userMenu">
+            {{--@include('layouts.menu')--}}
+            <user-menu></user-menu>
         </div>
 
         <div class="column is-8" class="page-content" id="userContent">

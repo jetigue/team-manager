@@ -128,11 +128,11 @@
 
             mounted() {
                 function getGenderNames() {
-                    return axios.get('/meets/genders')
+                    return axios.get('/meet_properties/genders')
                 }
 
                 function getDivisionNames() {
-                    return axios.get('/meets/divisions')
+                    return axios.get('/meet_properties/divisions')
                 }
 
                 axios.all([

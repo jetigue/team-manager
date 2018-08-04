@@ -11,6 +11,6 @@ class TrackVenuesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Meets\Track\Venue', 10)->create();
+        factory('App\Models\Track\Venue', 10)->create();
     }
 }

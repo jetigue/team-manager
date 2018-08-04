@@ -21,7 +21,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 //    /** @test */
 //    public function a_user_can_browse_track_meets()
 //    {
-//        $response = $this->get('/track/meets');
+//        $response = $this->get('/track/meet_properties');
 //
 //        $response->assertSee($this->meet->trackMeet->meet_name);
 //    }

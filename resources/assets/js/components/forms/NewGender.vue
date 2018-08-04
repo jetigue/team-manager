@@ -1,5 +1,5 @@
 <template>
-    <form action="/meets/genders" method="POST" id="newGender" @submit.prevent="onSubmit"
+    <form action="/api/race-properties/genders" method="POST" id="newGender" @submit.prevent="onSubmit"
           @keydown="form.errors.clear($event.target.name)">
 
         <div class="field">
@@ -31,7 +31,7 @@
         methods: {
             onSubmit() {
                 this.form
-                .post('/meets/genders')
+                .post('/api/race-properties/genders')
 
                     .then(data => {
 

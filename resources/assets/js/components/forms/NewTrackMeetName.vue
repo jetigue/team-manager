@@ -31,7 +31,7 @@
         methods: {
             onSubmit() {
                 this.form
-                .post('/track/meet/names')
+                .post('/api/track/meet/names')
 
                     .then(data => {
 
